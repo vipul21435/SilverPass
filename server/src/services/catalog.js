@@ -33,7 +33,7 @@ const DOC = {
   damagedPassport: {
     id: 'damaged-passport',
     label: 'The damaged passport',
-    hint: 'Bring it even if it is badly damaged - it must be surrendered.',
+    hint: 'Bring it even if it is badly damaged. It must be surrendered.',
   },
   pensionOrder: {
     id: 'pension-order',

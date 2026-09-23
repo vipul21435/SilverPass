@@ -1,7 +1,7 @@
 /**
  * Every visible string, in English and Hindi. Kept in one file so a missing
  * translation is obvious, and so the copy can be reviewed for plain language
- * in one sitting - the audience is older readers, many of whom are using a
+ * in one sitting. The audience is older readers, many of whom are using a
  * government service online for the first time.
  */
 export const STRINGS = {
@@ -30,7 +30,7 @@ export const STRINGS = {
 
     'home.title': 'Apply for your passport without the confusion',
     'home.lede':
-      'See what you need, tick it off as you gather it, book a quiet appointment, and check where your passport has got to - all in large, plain language.',
+      'See what you need, tick it off as you gather it, book a quiet appointment, and check where your passport has got to, all in large and plain language.',
     'home.cta.start': 'Start an application',
     'home.cta.track': 'Track an application',
     'home.step1.title': '1. See what is needed',
@@ -93,8 +93,8 @@ export const STRINGS = {
     'new.title': 'Start an application',
     'new.service': 'Which service do you need?',
     'new.scheme': 'How soon do you need it?',
-    'new.schemeNormal': 'Normal - the usual wait, the lower fee',
-    'new.schemeTatkal': 'Fast-track - quicker, but costs more',
+    'new.schemeNormal': 'Normal, the usual wait and the lower fee',
+    'new.schemeTatkal': 'Fast-track, quicker but it costs more',
     'new.applicant': 'Who is the passport for?',
     'new.address': 'Current address',
     'new.line1': 'House number and street',

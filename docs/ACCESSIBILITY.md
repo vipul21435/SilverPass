@@ -1,27 +1,27 @@
 # Accessibility notes
 
-The target user is 70 or older, possibly using a government service online for
-the first time, possibly with reduced vision, tremor, or no English. This file
-records what was built for them and how to check it still works.
+The person this is for is 70 or older, possibly doing a government service
+online for the first time, possibly with reduced vision, a tremor, or no
+English. This is what was built for them and how to check it still works.
 
 ## Reading
 
-**Base size is 20px (1.25rem), not 16px.** Every length downstream is in `rem`,
-so the whole page scales from one custom property.
+Base size is 20px rather than 16px. Every length downstream is in `rem`, so the
+whole page scales from one custom property.
 
-**A / A+ / A++ controls sit in a bar above the header** - the first thing after
+The A / A+ / A++ controls sit in a bar above the header, the first thing after
 the skip link, never behind a menu. They set `data-text-size` on `<html>`;
 `:root` and the two override blocks in
 [`global.css`](../web/src/styles/global.css) redefine the type scale. Largest is
 1.8rem base, roughly 29px.
 
-**Applicants aged 60 or over get large text switched on at registration.**
-Someone who needs bigger type should not first have to read small type to find
-the setting. It is computed server-side in `userService.register` from the date
+Applicants aged 60 or over get large text switched on at registration. Someone
+who needs bigger type should not first have to read small type to find the
+setting. It is computed server-side in `userService.register` from the date
 of birth and returned with the account, and the client adopts it on sign-in.
 
-**Line length is capped at 62 characters** on paragraphs. Long lines are hard to
-track back from, and that gets harder with age.
+Paragraphs are capped at 62 characters. Long lines are hard to track back from,
+and that gets harder with age.
 
 ## Contrast
 
@@ -70,28 +70,28 @@ returned in both languages, so the API is not English-only.
 Statuses are written as sentences, never as enum values: "Your passport is being
 printed", not `PRINTING`. Validation messages name the field and say what to do:
 "Please fill in your city or town", not "String must contain at least 1
-character(s)". Scheme names are explained rather than assumed - "Fast-track -
-quicker, but costs more" rather than "Tatkal".
+character(s)". Scheme names are explained rather than assumed, so the option
+reads "Fast-track, quicker but it costs more" rather than "Tatkal".
 
 ## Beyond the screen
 
-**Senior-priority slots.** The first two hours of every day at every centre
+The first two hours of every day at every centre
 (09:30-11:00) are bookable only by applicants aged 60 or over. Queueing is the
 single biggest barrier this application exists to remove, so the quietest slots
 are allocated by need rather than to whoever books fastest.
 
-**Access information before you commit.** Step-free access and wheelchair
+Step-free access and wheelchair
 availability are shown on the centre picker, not discovered on arrival.
 
-**Assistance needs travel with the application.** Wheelchair and interpreter
+Wheelchair and interpreter
 needs, and the name and number of whoever is coming along, are collected when
 the application is made and attached to the appointment, so the centre knows
 in advance.
 
-**Reference numbers avoid `0`, `O`, `1`, and `I`** - they get read aloud over the
+Reference numbers avoid `0`, `O`, `1` and `I` - they get read aloud over the
 phone, and misread otherwise.
 
-**Tracking needs no account**, because an adult child checking on a parent's
+Tracking needs no account, because an adult child checking on a parent's
 application usually does not have the password.
 
 ## Reduced motion

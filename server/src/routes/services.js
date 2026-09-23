@@ -8,7 +8,7 @@ import {
   SLOT_TIMES,
 } from '../services/appointmentService.js';
 
-/** Public reference data. No account needed - people compare before signing up. */
+/** Public reference data. No account needed, people compare before signing up. */
 export function serviceRoutes() {
   const router = Router();
 

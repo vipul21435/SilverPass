@@ -21,16 +21,16 @@ frameworks."
 
 ## What was wrong
 
-### 1. Live database credentials in a public repository - critical
+### 1. Live database credentials in a public repository (critical)
 
 `server.js` contained a MongoDB Atlas connection string with the username and
 password in plain text. Anyone who found the repository had read and write access
 to the database.
 
-It is still in the git history. See [SECURITY.md](../SECURITY.md) - the
+It is still in the git history. See [SECURITY.md](../SECURITY.md). The
 credential needs rotating, and deleting the line does not achieve that.
 
-### 2. The server could not start - critical
+### 2. The server could not start (critical)
 
 ```js
 const authRoutes = require('./routes/auth');
@@ -52,7 +52,7 @@ The description promised one. There were no frontend files at all.
 
 ### 4. The README described a different project
 
-It was the unmodified Create React App template - instructions for `npm start`,
+It was the unmodified Create React App template, with instructions for `npm start`,
 `npm run eject`, and code splitting, for an app that did not exist. Nothing in it
 described SilverPass.
 
@@ -68,7 +68,7 @@ No validation, no error handling, no authorisation checks, no tests, no CI, no
 `.env` handling, no licence. The Mongoose connection used `useNewUrlParser` and
 `useUnifiedTopology`, which have been no-ops since Mongoose 6.
 
-No GitHub issues were open - "the issues" were that the project did not work.
+No GitHub issues were open. "The issues" were that the project did not work.
 
 ## What it is now
 
@@ -78,7 +78,7 @@ Rebuilt: everything else.
 
 ### Structure
 
-An npm workspaces monorepo - `server` (Express API) and `web` (React client) -
+An npm workspaces monorepo: `server` (Express API) and `web` (React client),
 so one `npm install` sets up both and one `npm run dev` runs both.
 
 ### Server
@@ -97,7 +97,7 @@ run the real application against a throwaway database.
 **Storage.** A JSON file store is the default so the repository runs the moment
 it is cloned. It holds everything in memory, flushes atomically (temp file plus
 rename) and serialises writes through a promise chain. MongoDB is a drop-in
-alternative behind the same interface - implemented on the official driver
+alternative behind the same interface, implemented on the official driver
 rather than Mongoose, since the mapping layer earned nothing here. A
 [contract test](../server/test/store.test.js) runs against both, and CI runs the
 entire server suite once per adapter.

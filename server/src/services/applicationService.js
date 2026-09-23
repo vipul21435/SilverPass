@@ -187,7 +187,7 @@ export function createApplicationService(store) {
       });
     },
 
-    /** Public status lookup by reference number - no account needed. */
+    /** Public status lookup by reference number, no account needed. */
     async trackByReference(reference) {
       const application = await store.applications.findByReference(reference.toUpperCase());
       if (!application) throw notFound('No application has that reference number.');

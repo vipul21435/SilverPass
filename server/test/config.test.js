@@ -12,7 +12,7 @@ const run = promisify(execFile);
 const serverRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const envFile = path.join(serverRoot, '.env');
 
-/** True when a developer's own .env is present - then we touch nothing. */
+/** True when a developer's own .env is present, in which case we touch nothing. */
 const developerEnvExists = existsSync(envFile);
 
 /** Loads the real config in a child process with a controlled environment. */
@@ -92,7 +92,7 @@ describe('configuration loading', () => {
     if (skipIfDeveloperEnv(t)) return;
 
     // Regression test: `.env.example` ships `JWT_SECRET=`, and copying it to
-    // `.env` - which the README tells you to do - used to stop the server and
+    // `.env`, which the README tells you to do, used to stop the server and
     // every script dead with "String must contain at least 1 character(s)".
     await withEnvFile(['PORT=9999', 'JWT_SECRET=', 'MONGO_URI=', 'STORE=json'], async () => {
       const config = await loadConfig({ NODE_ENV: 'development', JWT_SECRET: undefined });

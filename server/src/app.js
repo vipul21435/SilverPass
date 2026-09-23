@@ -25,7 +25,7 @@ export function createApp(store) {
     cors({
       origin(origin, callback) {
         // No Origin header means a same-origin or non-browser caller (curl,
-        // health checks) - nothing for CORS to protect against.
+        // health checks), so there is nothing for CORS to protect against.
         if (!origin || config.corsOrigins.includes(origin)) {
           callback(null, true);
           return;

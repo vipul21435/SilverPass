@@ -128,7 +128,7 @@ describe('tracking without an account', () => {
 });
 
 describe('protected pages', () => {
-  // A real route table, because ProtectedRoute redirects - rendered on its own
+  // A real route table, because ProtectedRoute redirects. Rendered on its own
   // it would only ever redirect back to itself.
   const routes = (
     <Routes>

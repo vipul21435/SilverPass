@@ -58,7 +58,7 @@ plus a `booking` object describing `slotTimes`, `seatsPerSlot`,
 ### `GET /api/applications/track/:reference`
 
 Status by reference number, case-insensitive. No token needed, and deliberately
-returns no personal details - relatives often check on someone's behalf.
+returns no personal details, because relatives often check on someone's behalf.
 
 ```json
 {
@@ -216,8 +216,8 @@ All require a token.
 }
 ```
 
-When the date cannot be booked at all - in the past, more than 60 days ahead, or
-a Sunday - this returns `bookable: false` with a plain-language `reason` and an
+When the date cannot be booked at all, whether it is in the past, more than 60
+days ahead, or a Sunday, this returns `bookable: false` with a plain-language `reason` and an
 empty `slots`, rather than an error. `unavailableReason` is `full` or
 `reserved_for_senior_citizens`.
 
