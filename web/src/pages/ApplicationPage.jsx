@@ -121,14 +121,10 @@ export function ApplicationPage() {
                   type="checkbox"
                   checked={doc.ready}
                   disabled={busy || application.isTerminal}
-                  onChange={(event) =>
-                    run(() =>
-                      api.setDocument(application.id, {
-                        documentId: doc.id,
-                        ready: event.target.checked,
-                      }),
-                    )
-                  }
+                  onChange={(event) => {
+                    const ready = event.target.checked;
+                    run(() => api.setDocument(application.id, { documentId: doc.id, ready }));
+                  }}
                 />
                 <span>
                   <strong>{doc.label}</strong>

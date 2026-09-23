@@ -90,6 +90,22 @@ describe('authentication', () => {
     assert.match(JSON.stringify(response.body), /must be in the past/);
   });
 
+  it('asks for a date rather than complaining it is not in the past', async () => {
+    const response = await ctx.api
+      .post('/api/auth/register')
+      .send({
+        fullName: 'No Birthday',
+        email: 'nodob@example.com',
+        phone: '9876543212',
+        password: 'a good long password',
+        dateOfBirth: '',
+      })
+      .expect(400);
+
+    const dob = response.body.error.details.fields.filter((f) => f.field === 'dateOfBirth');
+    assert.equal(dob[0].message, 'Please enter a date.', 'the first message is the useful one');
+  });
+
   it('signs in with the right password', async () => {
     const user = await registerUser(ctx.api);
     const response = await ctx.api

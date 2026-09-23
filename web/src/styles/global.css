@@ -303,7 +303,8 @@ html[data-contrast='high'] .site-footer {
   border-color: var(--brand);
 }
 
-.a11y-option[aria-pressed='true'] {
+.a11y-option[aria-pressed='true'],
+.a11y-option[aria-pressed='true']:hover {
   background: var(--brand);
   border-color: var(--brand-dark);
   color: #fff;
@@ -344,6 +345,12 @@ html[data-contrast='high'] .a11y-option[aria-pressed='true'] {
   display: grid;
   gap: var(--gap);
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+/* The four "how it works" cards hold little text, so they can sit narrower and
+   fill the row rather than leaving one stranded on a second line. */
+.card-grid--steps {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .hero {
@@ -694,7 +701,11 @@ html[data-contrast='high'] .a11y-option[aria-pressed='true'] {
   border-style: dashed;
 }
 
-.slot[aria-pressed='true'] {
+/* Also matched while hovered: `.slot:hover:not(:disabled)` outranks a plain
+   attribute selector, which would otherwise make the slot you just picked look
+   unpicked as soon as the pointer sat on it. */
+.slot[aria-pressed='true'],
+.slot[aria-pressed='true']:hover:not(:disabled) {
   background: var(--brand);
   border-color: var(--brand-dark);
   color: #fff;

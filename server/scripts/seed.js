@@ -3,6 +3,10 @@
  * app has something to show on a fresh clone.
  *
  * Destructive: it empties the store first. Refuses to run in production.
+ *
+ * Stop the server before seeding. The JSON store keeps everything in memory and
+ * flushes on write, so a server that is already running neither notices a
+ * reseeded file nor leaves it alone — its next write overwrites it.
  */
 import { config } from '../src/config/index.js';
 import { buildStore } from '../src/db/index.js';
@@ -73,11 +77,38 @@ const PEOPLE = [
   },
 ];
 
+/** True when something already holds the configured port. */
+async function isServerRunning() {
+  const { createConnection } = await import('node:net');
+  return new Promise((resolve) => {
+    const socket = createConnection({ port: config.port, host: '127.0.0.1' });
+    socket.setTimeout(400);
+    socket.on('connect', () => {
+      socket.destroy();
+      resolve(true);
+    });
+    socket.on('error', () => resolve(false));
+    socket.on('timeout', () => {
+      socket.destroy();
+      resolve(false);
+    });
+  });
+}
+
 /** The first open day at least `offset` days out. */
 function openDate(offset) {
   let date = addDays(todayIso(), offset);
   while (!isCenterOpen(date)) date = addDays(date, 1);
   return date;
+}
+
+// Warn before doing anything, since the mistake is silent otherwise.
+if (config.store.driver === 'json' && (await isServerRunning())) {
+  console.warn(
+    `\nWarning: something is already listening on port ${config.port}.\n` +
+      'If that is the SilverPass server, stop it before seeding — it holds the\n' +
+      'JSON store in memory and will overwrite this seed on its next write.\n',
+  );
 }
 
 const store = buildStore();

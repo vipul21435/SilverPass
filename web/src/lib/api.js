@@ -32,8 +32,11 @@ export class ApiError extends Error {
 
   /** `{ fieldName: 'message' }` for rendering errors next to each input. */
   get fieldErrors() {
+    // Zod reports every failed check for a field. Keep the first, which is the
+    // most fundamental one — "Please enter a date." rather than the
+    // "must be in the past" that an empty box also trips.
     return (this.details?.fields ?? []).reduce((acc, field) => {
-      acc[field.field] = field.message;
+      if (!(field.field in acc)) acc[field.field] = field.message;
       return acc;
     }, {});
   }

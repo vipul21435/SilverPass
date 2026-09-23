@@ -8,6 +8,8 @@ export const STRINGS = {
   en: {
     'app.name': 'SilverPass',
     'app.tagline': 'Passport help, made simple.',
+    'app.disclaimer':
+      'A demonstration project. Not affiliated with the Passport Seva Kendra or the Ministry of External Affairs, and it does not submit real applications.',
     'a11y.skip': 'Skip to the main content',
     'a11y.textSize': 'Text size',
     'a11y.textNormal': 'Normal text size',
@@ -156,6 +158,8 @@ export const STRINGS = {
   hi: {
     'app.name': 'सिल्वरपास',
     'app.tagline': 'पासपोर्ट सहायता, आसान भाषा में।',
+    'app.disclaimer':
+      'यह एक प्रदर्शन परियोजना है। इसका पासपोर्ट सेवा केंद्र या विदेश मंत्रालय से कोई संबंध नहीं है, और यह वास्तविक आवेदन जमा नहीं करती।',
     'a11y.skip': 'मुख्य सामग्री पर जाएँ',
     'a11y.textSize': 'अक्षर का आकार',
     'a11y.textNormal': 'सामान्य आकार',

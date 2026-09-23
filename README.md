@@ -29,7 +29,7 @@ SilverPass takes the opposite starting point. Every decision below follows from
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | 20px base text, with A / A+ / A++ controls in the top bar             | Not buried in a settings page — it is the first thing on the page                     |
 | Accessible defaults switch on automatically for applicants aged 60+   | The people who need large text shouldn't have to find the setting                     |
-| Full English and Hindi, switchable at any moment                      | 134 strings, both complete, enforced by a test                                        |
+| Full English and Hindi, switchable at any moment                      | 135 strings, both complete, enforced by a test                                        |
 | The first two hours of every day are reserved for applicants aged 60+ | Queueing is the barrier; quiet slots are allocated, not raced for                     |
 | Statuses read "Your passport is being printed", never `PRINTING`      | Enum values are for databases, not for people                                         |
 | Every error names the field and says what to do                       | "Please fill in your city or town", not "String must contain at least 1 character(s)" |
@@ -57,7 +57,7 @@ SilverPass takes the opposite starting point. Every decision below follows from
 - Two interchangeable storage backends behind one interface, held to a shared
   contract test
 - Helmet, CORS allow-listing, rate limiting, and a 100 kB body cap
-- 116 tests — the server suite runs against both storage backends
+- 126 tests — the server suite runs against both storage backends
 
 ## Quick start
 
@@ -74,6 +74,10 @@ npm run dev               # API on :4000, web app on :5173
 ```
 
 Open <http://localhost:5173>.
+
+> Seed before you start the server, not after. The JSON store keeps everything
+> in memory and flushes on write, so a running server will overwrite a freshly
+> seeded file. `npm run seed` warns you if the port is already in use.
 
 If you seeded, sign in with any of these and the password `silverpass demo`:
 

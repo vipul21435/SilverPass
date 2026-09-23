@@ -23,3 +23,35 @@ describe('rupees', () => {
     expect(rupees(100000)).toBe('₹1,00,000');
   });
 });
+
+describe('ApiError.fieldErrors', () => {
+  it('keeps the first message for a field, not the last', async () => {
+    const { ApiError } = await import('../lib/api.js');
+    // Zod reports every failed check. An empty date trips both the "enter a
+    // date" rule and the "must be in the past" one; the first is the one worth
+    // showing.
+    const error = new ApiError(400, {
+      error: {
+        code: 'BAD_REQUEST',
+        message: 'Some of the details need fixing.',
+        details: {
+          fields: [
+            { field: 'dateOfBirth', message: 'Please enter a date.' },
+            { field: 'dateOfBirth', message: 'The date of birth must be in the past.' },
+            { field: 'email', message: 'Enter a valid email address.' },
+          ],
+        },
+      },
+    });
+
+    expect(error.fieldErrors).toEqual({
+      dateOfBirth: 'Please enter a date.',
+      email: 'Enter a valid email address.',
+    });
+  });
+
+  it('is an empty object when there are no field errors', async () => {
+    const { ApiError } = await import('../lib/api.js');
+    expect(new ApiError(500, { error: { code: 'INTERNAL_ERROR' } }).fieldErrors).toEqual({});
+  });
+});

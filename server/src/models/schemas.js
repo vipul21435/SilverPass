@@ -20,6 +20,7 @@ const trimmed = (max, what = 'this') =>
 
 export const isoDate = z
   .string()
+  .min(1, 'Please enter a date.')
   .regex(/^\d{4}-\d{2}-\d{2}$/, 'Use the format YYYY-MM-DD.')
   .refine((value) => !Number.isNaN(Date.parse(`${value}T00:00:00Z`)), 'That date does not exist.');
 

@@ -65,8 +65,7 @@ export function Layout({ children }) {
             <strong>{t('app.name')}</strong> — {t('app.tagline')}
           </p>
           <p className="muted" style={{ color: 'inherit' }}>
-            A demonstration project. Not affiliated with the Passport Seva Kendra or the Ministry of
-            External Affairs, and it does not submit real applications.
+            {t('app.disclaimer')}
           </p>
         </div>
       </footer>

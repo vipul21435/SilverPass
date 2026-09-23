@@ -25,7 +25,7 @@ export function HomePage() {
       </div>
 
       <h2>{t('app.tagline')}</h2>
-      <div className="card-grid">
+      <div className="card-grid card-grid--steps">
         {steps.map((step) => (
           <div className="card" key={step}>
             <h3>{t(`home.${step}.title`)}</h3>

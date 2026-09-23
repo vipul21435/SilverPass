@@ -58,7 +58,7 @@ white. It is never removed.
 ## Language
 
 Full English and Hindi, switchable at any point without losing your place. All
-134 strings exist in both — [`strings.test.js`](../web/src/test/strings.test.js)
+135 strings exist in both — [`strings.test.js`](../web/src/test/strings.test.js)
 fails the build if a key is missing from either, if one defines a key the other
 does not, if a placeholder differs between them, or if any string is empty.
 

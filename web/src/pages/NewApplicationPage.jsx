@@ -85,7 +85,8 @@ export function NewApplicationPage() {
         // Server paths are nested ("applicant.address.pincode"); the form is
         // flat, so key the messages by the last segment.
         const flattened = Object.entries(error.fieldErrors).reduce((acc, [path, message]) => {
-          acc[path.split('.').pop()] = message;
+          const key = path.split('.').pop();
+          if (!(key in acc)) acc[key] = message;
           return acc;
         }, {});
         setErrors(flattened);
@@ -174,7 +175,7 @@ export function NewApplicationPage() {
             required
           />
           <Field
-            label={`${t('new.line2')} (${t('common.optional')})`}
+            label={t('new.line2')}
             name="line2"
             autoComplete="address-line2"
             value={form.line2}
@@ -230,7 +231,7 @@ export function NewApplicationPage() {
             onChange={set('needsInterpreter')}
           />
           <Field
-            label={`${t('new.helperName')} (${t('common.optional')})`}
+            label={t('new.helperName')}
             name="helperName"
             value={form.helperName}
             onChange={set('helperName')}
