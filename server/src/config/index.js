@@ -21,13 +21,20 @@ const KNOWN = [
   'MONGO_DB_NAME',
 ];
 
-// An empty value means "not configured", never a zero-length setting.
-// `.env.example` ships `JWT_SECRET=` as a placeholder, and an empty variable
-// left in a shell should not shadow the `.env` file either — so clear them
-// before anything is loaded. Only this application's own keys are touched.
-for (const key of KNOWN) {
-  if (process.env[key] === '') delete process.env[key];
+/**
+ * An empty value means "not configured", never a zero-length setting.
+ * `.env.example` ships `JWT_SECRET=` as a placeholder, and that has to behave
+ * exactly like leaving the line out. Only this application's own keys are
+ * touched, so nothing else in the environment is disturbed.
+ */
+function dropEmptyValues() {
+  for (const key of KNOWN) {
+    if (process.env[key] === '') delete process.env[key];
+  }
 }
+
+// Before loading: an empty variable left in a shell should not shadow the file.
+dropEmptyValues();
 
 // Never override a variable the process was actually started with: `PORT=1234
 // npm start`, CI secrets and the test harness all have to beat a developer's
@@ -42,6 +49,9 @@ if (process.env.SILVERPASS_SKIP_DOTENV !== '1') {
     if (existsSync(candidate)) dotenv.config({ path: candidate, override: false });
   }
 }
+
+// And again afterwards, because the files themselves carry empty placeholders.
+dropEmptyValues();
 
 const schema = z
   .object({

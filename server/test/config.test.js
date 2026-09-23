@@ -81,6 +81,40 @@ describe('configuration loading', () => {
     assert.equal(config.port, 9999);
   });
 
+  it('starts when the .env file itself holds an empty placeholder', async (t) => {
+    if (preexisting) return t.skip('server/.env already exists; not overwriting it');
+
+    // Regression test: `.env.example` ships `JWT_SECRET=`, and copying it to
+    // `.env` — which the README tells you to do — used to stop the server and
+    // every script dead, because dotenv put the empty string into the
+    // environment after the empty values had already been cleared.
+    await writeFile(
+      envFile,
+      ['PORT=9999', 'JWT_SECRET=', 'MONGO_URI=', 'STORE=json'].join('\n'),
+      'utf8',
+    );
+    try {
+      // The assertion is simply that this loads at all: it used to throw
+      // "JWT_SECRET: String must contain at least 1 character(s)".
+      const config = await loadConfig({ NODE_ENV: 'development' });
+      assert.ok(config.secret.length > 0, 'a usable secret is resolved');
+      assert.equal(config.port, 9999, 'the non-empty values still apply');
+      assert.equal(config.store, 'json');
+    } finally {
+      await writeFile(
+        envFile,
+        [
+          'PORT=9999',
+          'NODE_ENV=development',
+          'JWT_SECRET=secret-from-the-dotenv-file',
+          'STORE=json',
+          'MONGO_URI=',
+        ].join('\n'),
+        'utf8',
+      );
+    }
+  });
+
   it('treats an empty value as unset rather than as a zero-length string', async (t) => {
     if (preexisting) return t.skip('server/.env already exists; not overwriting it');
 
