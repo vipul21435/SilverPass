@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  push:
+    branches: [main, rebuild]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  quality:
+    name: Lint and formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+
+  server:
+    name: Server tests (${{ matrix.store }} store)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The JSON store is the default; the Mongo adapter has to pass exactly
+        # the same suite, which is the only thing that makes them swappable.
+        store: [json, mongo]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Start MongoDB
+        if: matrix.store == 'mongo'
+        run: |
+          docker run -d --name mongo -p 27017:27017 mongo:7
+          for i in $(seq 1 30); do
+            if docker exec mongo mongosh --quiet --eval 'db.adminCommand("ping")' >/dev/null 2>&1; then
+              echo "MongoDB is ready"; exit 0
+            fi
+            sleep 2
+          done
+          echo "MongoDB did not become ready in time"; docker logs mongo; exit 1
+
+      - run: npm ci
+
+      - name: Run the suite
+        working-directory: server
+        env:
+          # Set only for the mongo leg; scripts/test-mongo.js starts a
+          # throwaway server itself when this is empty.
+          TEST_MONGO_URI: ${{ matrix.store == 'mongo' && 'mongodb://localhost:27017' || '' }}
+        run: |
+          if [ "${{ matrix.store }}" = "mongo" ]; then
+            npm run test:mongo
+          else
+            npm test
+          fi
+
+  web:
+    name: Web tests and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm test --workspace web
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: web/dist
+          retention-days: 7
+
+  smoke:
+    name: End-to-end smoke test
+    runs-on: ubuntu-latest
+    needs: [server, web]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - name: Seed, boot, and exercise the API
+        working-directory: server
+        env:
+          PORT: '4000'
+          JWT_SECRET: ci-secret-long-enough-for-the-config-validator
+          JSON_STORE_PATH: data/ci.json
+        run: |
+          set -euo pipefail
+          npm run seed
+          node src/index.js &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:4000/api/health >/dev/null && break
+            sleep 1
+          done
+
+          curl -sf http://localhost:4000/api/health | grep -q '"status":"ok"'
+          curl -sf http://localhost:4000/api/services | grep -q '"fresh"'
+
+          TOKEN=$(curl -sf -X POST http://localhost:4000/api/auth/login \
+            -H 'content-type: application/json' \
+            -d '{"email":"kamala@example.com","password":"silverpass demo"}' \
+            | node -pe 'JSON.parse(require("fs").readFileSync(0,"utf8")).token')
+
+          curl -sf http://localhost:4000/api/applications \
+            -H "authorization: Bearer $TOKEN" | grep -q '"reference"'
+
+          echo "Smoke test passed."
