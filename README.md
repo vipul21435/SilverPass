@@ -141,17 +141,18 @@ Everything is read from `.env`; see [`.env.example`](.env.example) for the full
 list. The server validates its configuration at boot and refuses to start with a
 clear message rather than failing later.
 
-| Variable          | Default                 | Notes                                                                                                                                 |
-| ----------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `PORT`            | `4000`                  | macOS runs AirPlay Receiver on 5000                                                                                                   |
-| `NODE_ENV`        | `development`           |                                                                                                                                       |
-| `JWT_SECRET`      | _(generated)_           | **Required in production**, minimum 32 characters. Outside production a random one is generated per boot, so sessions end on restart. |
-| `JWT_EXPIRES_IN`  | `2h`                    |                                                                                                                                       |
-| `CORS_ORIGIN`     | `http://localhost:5173` | Comma-separated allow-list                                                                                                            |
-| `STORE`           | `json`                  | `json` or `mongo`                                                                                                                     |
-| `JSON_STORE_PATH` | `data/silverpass.json`  | Relative to `server/`                                                                                                                 |
-| `MONGO_URI`       | —                       | Required when `STORE=mongo`                                                                                                           |
-| `MONGO_DB_NAME`   | `silverpass`            |                                                                                                                                       |
+| Variable                 | Default                 | Notes                                                                                                                                 |
+| ------------------------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`                   | `4000`                  | macOS runs AirPlay Receiver on 5000                                                                                                   |
+| `NODE_ENV`               | `development`           |                                                                                                                                       |
+| `JWT_SECRET`             | _(generated)_           | **Required in production**, minimum 32 characters. Outside production a random one is generated per boot, so sessions end on restart. |
+| `JWT_EXPIRES_IN`         | `2h`                    |                                                                                                                                       |
+| `CORS_ORIGIN`            | `http://localhost:5173` | Comma-separated allow-list                                                                                                            |
+| `STORE`                  | `json`                  | `json` or `mongo`                                                                                                                     |
+| `JSON_STORE_PATH`        | `data/silverpass.json`  | Relative to `server/`                                                                                                                 |
+| `MONGO_URI`              | —                       | Required when `STORE=mongo`                                                                                                           |
+| `MONGO_DB_NAME`          | `silverpass`            |                                                                                                                                       |
+| `SILVERPASS_SKIP_DOTENV` | —                       | Set to `1` to ignore `.env` files and use only the environment                                                                        |
 
 ### Storage
 

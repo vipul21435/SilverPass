@@ -8,9 +8,39 @@ import { z } from 'zod';
 const serverRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const repoRoot = path.resolve(serverRoot, '..');
 
-// Load `.env` from the repo root first, then allow a server-local one to win.
-for (const candidate of [path.join(repoRoot, '.env'), path.join(serverRoot, '.env')]) {
-  if (existsSync(candidate)) dotenv.config({ path: candidate, override: true });
+/** The variables this application reads. Nothing else is touched. */
+const KNOWN = [
+  'NODE_ENV',
+  'PORT',
+  'JWT_SECRET',
+  'JWT_EXPIRES_IN',
+  'CORS_ORIGIN',
+  'STORE',
+  'JSON_STORE_PATH',
+  'MONGO_URI',
+  'MONGO_DB_NAME',
+];
+
+// An empty value means "not configured", never a zero-length setting.
+// `.env.example` ships `JWT_SECRET=` as a placeholder, and an empty variable
+// left in a shell should not shadow the `.env` file either — so clear them
+// before anything is loaded. Only this application's own keys are touched.
+for (const key of KNOWN) {
+  if (process.env[key] === '') delete process.env[key];
+}
+
+// Never override a variable the process was actually started with: `PORT=1234
+// npm start`, CI secrets and the test harness all have to beat a developer's
+// local `.env`. With overriding disabled the first file to define a key wins,
+// so a server-local `.env` is loaded ahead of the repo-root one.
+//
+// SILVERPASS_SKIP_DOTENV=1 ignores the files entirely, for deployments that
+// configure everything through the environment and want to be certain no
+// stray file can contribute.
+if (process.env.SILVERPASS_SKIP_DOTENV !== '1') {
+  for (const candidate of [path.join(serverRoot, '.env'), path.join(repoRoot, '.env')]) {
+    if (existsSync(candidate)) dotenv.config({ path: candidate, override: false });
+  }
 }
 
 const schema = z
