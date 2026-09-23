@@ -57,9 +57,9 @@ describe('configuration loading', () => {
   it('lets a real environment variable beat the .env file', async (t) => {
     if (skipIfDeveloperEnv(t)) return;
 
-    // Regression test: dotenv used to be loaded with override:true, so a
-    // developer who copied .env.example could not run the suite - the file's
-    // empty JWT_SECRET replaced the one the harness had set.
+    // The trap this guards: load dotenv with override:true and a developer who
+    // copied .env.example cannot run the suite, because the file's empty
+    // JWT_SECRET replaces the one the harness set.
     await withEnvFile(['PORT=9999', 'JWT_SECRET=secret-from-the-dotenv-file'], async () => {
       const config = await loadConfig({
         JWT_SECRET: 'secret-from-the-actual-environment',
