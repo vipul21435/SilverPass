@@ -52,7 +52,7 @@ white. It is never removed.
   fields on one page can never collide, because the ids come from `useId`.
 - Errors render as `role="alert"` with `aria-live="assertive"`; success and
   status messages use `role="status"` with `aria-live="polite"`.
-- Loading states are announced, not just spun.
+- Loading states are announced as well as shown.
 - `<html lang>` follows the language toggle, so a screen reader switches voice.
 
 ## Language
