@@ -62,7 +62,7 @@ export function Layout({ children }) {
       <footer className="site-footer">
         <div className="shell">
           <p>
-            <strong>{t('app.name')}</strong> — {t('app.tagline')}
+            <strong>{t('app.name')}</strong> - {t('app.tagline')}
           </p>
           <p className="muted" style={{ color: 'inherit' }}>
             {t('app.disclaimer')}

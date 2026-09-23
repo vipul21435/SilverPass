@@ -18,7 +18,7 @@ beforeEach(() => {
 });
 
 describe('signing in', () => {
-  it('shows the server’s message when the details are wrong', async () => {
+  it('shows the message from the server when the details are wrong', async () => {
     const user = userEvent.setup();
     vi.spyOn(api, 'login').mockRejectedValue(
       apiError(401, 'UNAUTHORIZED', 'That email address and password do not match.'),
@@ -128,7 +128,7 @@ describe('tracking without an account', () => {
 });
 
 describe('protected pages', () => {
-  // A real route table, because ProtectedRoute redirects — rendered on its own
+  // A real route table, because ProtectedRoute redirects - rendered on its own
   // it would only ever redirect back to itself.
   const routes = (
     <Routes>

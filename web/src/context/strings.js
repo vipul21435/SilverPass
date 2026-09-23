@@ -1,7 +1,7 @@
 /**
  * Every visible string, in English and Hindi. Kept in one file so a missing
  * translation is obvious, and so the copy can be reviewed for plain language
- * in one sitting — the audience is older readers, many of whom are using a
+ * in one sitting - the audience is older readers, many of whom are using a
  * government service online for the first time.
  */
 export const STRINGS = {
@@ -30,7 +30,7 @@ export const STRINGS = {
 
     'home.title': 'Apply for your passport without the confusion',
     'home.lede':
-      'See what you need, tick it off as you gather it, book a quiet appointment, and check where your passport has got to — all in large, plain language.',
+      'See what you need, tick it off as you gather it, book a quiet appointment, and check where your passport has got to - all in large, plain language.',
     'home.cta.start': 'Start an application',
     'home.cta.track': 'Track an application',
     'home.step1.title': '1. See what is needed',
@@ -64,8 +64,8 @@ export const STRINGS = {
     'auth.dobHint': 'This decides your fee concession and your appointment times.',
     'auth.noAccount': 'No account yet?',
     'auth.haveAccount': 'Already have an account?',
-    'auth.signingIn': 'Signing you in…',
-    'auth.creating': 'Creating your account…',
+    'auth.signingIn': 'Signing you in...',
+    'auth.creating': 'Creating your account...',
 
     'dash.title': 'My applications',
     'dash.empty': 'You have not started an application yet.',
@@ -93,8 +93,8 @@ export const STRINGS = {
     'new.title': 'Start an application',
     'new.service': 'Which service do you need?',
     'new.scheme': 'How soon do you need it?',
-    'new.schemeNormal': 'Normal — the usual wait, the lower fee',
-    'new.schemeTatkal': 'Fast-track — quicker, but costs more',
+    'new.schemeNormal': 'Normal - the usual wait, the lower fee',
+    'new.schemeTatkal': 'Fast-track - quicker, but costs more',
     'new.applicant': 'Who is the passport for?',
     'new.address': 'Current address',
     'new.line1': 'House number and street',
@@ -109,7 +109,7 @@ export const STRINGS = {
     'new.helperName': 'Name of the person coming with you (if any)',
     'new.helperPhone': 'Their mobile number',
     'new.create': 'Create the application',
-    'new.creating': 'Creating…',
+    'new.creating': 'Creating...',
 
     'book.title': 'Book an appointment',
     'book.center': 'Which centre?',
@@ -120,7 +120,7 @@ export const STRINGS = {
     'book.seniorOnly': 'Held for 60+',
     'book.seniorYours': 'Quiet slot',
     'book.confirm': 'Confirm this appointment',
-    'book.booking': 'Booking…',
+    'book.booking': 'Booking...',
     'book.stepFree': 'Step-free access',
     'book.noStepFree': 'Has steps at the entrance',
     'book.wheelchairs': 'Wheelchairs available',
@@ -135,12 +135,12 @@ export const STRINGS = {
     'track.reference': 'Reference number',
     'track.referenceHint': 'It looks like SP-ABCD1234.',
     'track.check': 'Check',
-    'track.checking': 'Checking…',
+    'track.checking': 'Checking...',
     'track.submittedOn': 'Submitted on',
     'track.expected': 'Usually finished within',
     'track.daysSince': 'Days since you applied',
 
-    'common.loading': 'Loading…',
+    'common.loading': 'Loading...',
     'common.back': 'Go back',
     'common.required': 'required',
     'common.optional': 'optional',
@@ -180,7 +180,7 @@ export const STRINGS = {
 
     'home.title': 'बिना उलझन के पासपोर्ट के लिए आवेदन करें',
     'home.lede':
-      'देखें कि क्या चाहिए, इकट्ठा करते जाएँ, शांत समय पर अपॉइंटमेंट लें, और पासपोर्ट कहाँ पहुँचा है यह जानें — बड़े अक्षरों और सरल भाषा में।',
+      'देखें कि क्या चाहिए, इकट्ठा करते जाएँ, शांत समय पर अपॉइंटमेंट लें, और पासपोर्ट कहाँ पहुँचा है यह जानें - बड़े अक्षरों और सरल भाषा में।',
     'home.cta.start': 'आवेदन शुरू करें',
     'home.cta.track': 'स्थिति देखें',
     'home.step1.title': '१. जानें क्या चाहिए',
@@ -214,8 +214,8 @@ export const STRINGS = {
     'auth.dobHint': 'इससे आपकी छूट और अपॉइंटमेंट का समय तय होता है।',
     'auth.noAccount': 'अभी खाता नहीं है?',
     'auth.haveAccount': 'पहले से खाता है?',
-    'auth.signingIn': 'साइन इन हो रहा है…',
-    'auth.creating': 'खाता बन रहा है…',
+    'auth.signingIn': 'साइन इन हो रहा है...',
+    'auth.creating': 'खाता बन रहा है...',
 
     'dash.title': 'मेरे आवेदन',
     'dash.empty': 'आपने अभी कोई आवेदन शुरू नहीं किया है।',
@@ -243,8 +243,8 @@ export const STRINGS = {
     'new.title': 'आवेदन शुरू करें',
     'new.service': 'आपको कौन सी सेवा चाहिए?',
     'new.scheme': 'कितनी जल्दी चाहिए?',
-    'new.schemeNormal': 'सामान्य — सामान्य समय, कम शुल्क',
-    'new.schemeTatkal': 'तत्काल — जल्दी, पर अधिक शुल्क',
+    'new.schemeNormal': 'सामान्य - सामान्य समय, कम शुल्क',
+    'new.schemeTatkal': 'तत्काल - जल्दी, पर अधिक शुल्क',
     'new.applicant': 'पासपोर्ट किसके लिए है?',
     'new.address': 'वर्तमान पता',
     'new.line1': 'मकान संख्या और गली',
@@ -259,7 +259,7 @@ export const STRINGS = {
     'new.helperName': 'साथ आने वाले व्यक्ति का नाम (यदि हो)',
     'new.helperPhone': 'उनका मोबाइल नंबर',
     'new.create': 'आवेदन बनाएँ',
-    'new.creating': 'बन रहा है…',
+    'new.creating': 'बन रहा है...',
 
     'book.title': 'अपॉइंटमेंट लें',
     'book.center': 'कौन सा केंद्र?',
@@ -270,7 +270,7 @@ export const STRINGS = {
     'book.seniorOnly': '६०+ के लिए',
     'book.seniorYours': 'शांत समय',
     'book.confirm': 'अपॉइंटमेंट पक्की करें',
-    'book.booking': 'बुक हो रही है…',
+    'book.booking': 'बुक हो रही है...',
     'book.stepFree': 'सीढ़ी रहित प्रवेश',
     'book.noStepFree': 'प्रवेश पर सीढ़ियाँ हैं',
     'book.wheelchairs': 'व्हीलचेयर उपलब्ध',
@@ -285,12 +285,12 @@ export const STRINGS = {
     'track.reference': 'संदर्भ संख्या',
     'track.referenceHint': 'यह SP-ABCD1234 जैसी दिखती है।',
     'track.check': 'देखें',
-    'track.checking': 'देख रहे हैं…',
+    'track.checking': 'देख रहे हैं...',
     'track.submittedOn': 'जमा करने की तिथि',
     'track.expected': 'सामान्यतः पूरा होता है',
     'track.daysSince': 'आवेदन को हुए दिन',
 
-    'common.loading': 'लोड हो रहा है…',
+    'common.loading': 'लोड हो रहा है...',
     'common.back': 'वापस जाएँ',
     'common.required': 'आवश्यक',
     'common.optional': 'वैकल्पिक',

@@ -58,7 +58,7 @@ plus a `booking` object describing `slotTimes`, `seatsPerSlot`,
 ### `GET /api/applications/track/:reference`
 
 Status by reference number, case-insensitive. No token needed, and deliberately
-returns no personal details — relatives often check on someone's behalf.
+returns no personal details - relatives often check on someone's behalf.
 
 ```json
 {
@@ -78,7 +78,7 @@ returns no personal details — relatives often check on someone's behalf.
 
 ## Authentication
 
-### `POST /api/auth/register` → `201`
+### `POST /api/auth/register` -> `201`
 
 ```json
 {
@@ -98,7 +98,7 @@ Returns `{ user, token }`. The user object never contains the password hash.
 
 ### `POST /api/auth/login`
 
-`{ "email", "password" }` → `{ user, token }`. A wrong password and an unknown
+`{ "email", "password" }` -> `{ user, token }`. A wrong password and an unknown
 account return an identical `401`, in the same time.
 
 ### `GET /api/auth/me`
@@ -120,7 +120,7 @@ All require a token. Every lookup proves ownership first.
 
 `{ applications: [...] }`, newest first, for the signed-in account only.
 
-### `POST /api/applications` → `201`
+### `POST /api/applications` -> `201`
 
 ```json
 {
@@ -140,7 +140,7 @@ All require a token. Every lookup proves ownership first.
 }
 ```
 
-Creates a `draft` with a reference number, an untick­ed checklist drawn from the
+Creates a `draft` with a reference number, an unticked checklist drawn from the
 service, and a fee quote. **The fee is priced from the applicant's date of
 birth**, not the account holder's, so a son applying for his mother still gets
 her concession.
@@ -153,7 +153,7 @@ The application, plus derived fields: `statusLabel`, `documentsReady`,
 
 ### `PATCH /api/applications/:id`
 
-Change `scheme`, `applicant`, or `assistance`. **Drafts only** — anything else is
+Change `scheme`, `applicant`, or `assistance`. **Drafts only** - anything else is
 a `409`. Changing the scheme or the applicant's date of birth re-prices the fee.
 
 ### `PUT /api/applications/:id/documents`
@@ -163,7 +163,7 @@ application's checklist is a `404`; a closed application is a `409`.
 
 ### `POST /api/applications/:id/submit`
 
-Moves `draft` → `submitted`. With anything outstanding it returns `400` and
+Moves `draft` -> `submitted`. With anything outstanding it returns `400` and
 lists exactly what is missing.
 
 ### `POST /api/applications/:id/status`
@@ -172,8 +172,8 @@ lists exactly what is missing.
 transition with a `409` naming what _is_ allowed.
 
 ```
-draft → submitted → document_verification → police_verification
-      → printing → dispatched → delivered
+draft -> submitted -> document_verification -> police_verification
+      -> printing -> dispatched -> delivered
 ```
 
 `on_hold` can be entered from most stages and returns to verification;
@@ -189,7 +189,7 @@ Cancels. Terminal afterwards.
 
 All require a token.
 
-### `GET /api/appointments/slots?centerId=…&date=YYYY-MM-DD`
+### `GET /api/appointments/slots?centerId=...&date=YYYY-MM-DD`
 
 ```json
 {
@@ -216,12 +216,12 @@ All require a token.
 }
 ```
 
-When the date cannot be booked at all — in the past, more than 60 days ahead, or
-a Sunday — this returns `bookable: false` with a plain-language `reason` and an
+When the date cannot be booked at all - in the past, more than 60 days ahead, or
+a Sunday - this returns `bookable: false` with a plain-language `reason` and an
 empty `slots`, rather than an error. `unavailableReason` is `full` or
 `reserved_for_senior_citizens`.
 
-`available` is computed for the caller: the 09:30–11:00 slots show as available
+`available` is computed for the caller: the 09:30-11:00 slots show as available
 only to applicants aged 60 or over.
 
 ### `GET /api/appointments/open-dates`
@@ -233,10 +233,10 @@ Every bookable date in the 60-day window, Sundays excluded.
 The caller's appointments, earliest first, each decorated with its `center` and
 an `isUpcoming` flag.
 
-### `POST /api/appointments` → `201`
+### `POST /api/appointments` -> `201`
 
 ```json
-{ "applicationId": "…", "centerId": "psk-noida", "date": "2026-09-28", "startTime": "11:30" }
+{ "applicationId": "...", "centerId": "psk-noida", "date": "2026-09-28", "startTime": "11:30" }
 ```
 
 Refuses, with a message saying why:

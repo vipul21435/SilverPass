@@ -6,7 +6,7 @@
  *
  * Stop the server before seeding. The JSON store keeps everything in memory and
  * flushes on write, so a server that is already running neither notices a
- * reseeded file nor leaves it alone — its next write overwrites it.
+ * reseeded file nor leaves it alone - its next write overwrites it.
  */
 import { config } from '../src/config/index.js';
 import { buildStore } from '../src/db/index.js';
@@ -106,7 +106,7 @@ function openDate(offset) {
 if (config.store.driver === 'json' && (await isServerRunning())) {
   console.warn(
     `\nWarning: something is already listening on port ${config.port}.\n` +
-      'If that is the SilverPass server, stop it before seeding — it holds the\n' +
+      'If that is the SilverPass server, stop it before seeding - it holds the\n' +
       'JSON store in memory and will overwrite this seed on its next write.\n',
   );
 }

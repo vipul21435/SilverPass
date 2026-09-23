@@ -101,7 +101,7 @@ export function ApplicationPage() {
               <>
                 {' '}
                 <span className="muted">
-                  ({rupees(application.fee.baseInr)} − {rupees(application.fee.concessionInr)})
+                  ({rupees(application.fee.baseInr)} - {rupees(application.fee.concessionInr)})
                 </span>
               </>
             ) : null}

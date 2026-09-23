@@ -123,7 +123,7 @@ describe('document checklist', () => {
     renderPage();
 
     expect(await screen.findByText('₹1,350')).toBeInTheDocument();
-    expect(screen.getByText(/₹1,500 − ₹150/)).toBeInTheDocument();
+    expect(screen.getByText(/₹1,500 - ₹150/)).toBeInTheDocument();
   });
 
   it('locks the checklist once the application is closed', async () => {

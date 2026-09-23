@@ -16,7 +16,7 @@ const trimmed = (max, what = 'this') =>
     })
     .trim()
     .min(1, `Please fill in ${what}.`)
-    .max(max, `That is too long — please keep ${what} under ${max} characters.`);
+    .max(max, `That is too long - please keep ${what} under ${max} characters.`);
 
 export const isoDate = z
   .string()

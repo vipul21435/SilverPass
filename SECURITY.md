@@ -1,6 +1,6 @@
 # Security
 
-## Exposed credential — action required
+## Exposed credential - action required
 
 The first commit in this repository (`75c521b`, "Add files via upload") contained
 a live MongoDB Atlas connection string, including the username and password, in
@@ -17,11 +17,11 @@ already:
 
 1. **Rotate it.** In MongoDB Atlas, go to _Database Access_, and either change
    that user's password or delete the user and create a new one.
-2. **Check what it could reach.** _Network Access_ → confirm the IP allow-list is
+2. **Check what it could reach.** _Network Access_ -> confirm the IP allow-list is
    not `0.0.0.0/0`. Review _Database Access_ for any user with broader rights
    than it needs.
 3. **Look for use you did not authorise.** Atlas keeps access logs under
-   _Project Access Manager_ → _Database Access History_.
+   _Project Access Manager_ -> _Database Access History_.
 4. Optionally, rewrite the history with
    [`git filter-repo`](https://github.com/newren/git-filter-repo) to strip the
    string from old commits. Do this _after_ rotating, never instead of it, and
@@ -42,7 +42,7 @@ arranged.
 
 ## What the application does
 
-**Passwords** are hashed with bcrypt at 12 rounds and never leave the server —
+**Passwords** are hashed with bcrypt at 12 rounds and never leave the server -
 not in any response body, log line, or error. Login compares against a dummy hash
 when the account does not exist, so a wrong email and a wrong password take the
 same amount of time and return an identical response.
@@ -51,7 +51,7 @@ same amount of time and return an identical response.
 expiry by default. Every authenticated request re-loads the account, so a deleted
 account loses access immediately rather than when its token runs out. Outside
 production a missing `JWT_SECRET` produces a random per-boot secret, which
-invalidates old sessions on restart — the safe failure mode, never a hardcoded
+invalidates old sessions on restart - the safe failure mode, never a hardcoded
 default.
 
 **Input** is validated with Zod at the edge of every route. Anything unvalidated
@@ -78,7 +78,7 @@ These are deliberate scope choices for a demonstration project, not oversights:
 - No email or SMS verification of an account.
 - No password reset flow.
 - No refresh tokens; the access token simply expires.
-- No document uploads — the checklist records that you have a document, not the
+- No document uploads - the checklist records that you have a document, not the
   document itself. Real uploads would need virus scanning, encryption at rest,
   and a retention policy.
 - No payment integration; fees are quoted, not collected.

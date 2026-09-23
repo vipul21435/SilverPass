@@ -120,7 +120,7 @@ for (const adapter of adapters) {
         assert.equal(updated.email, record.email, 'untouched fields survive');
       });
 
-      it('lists a user’s applications newest first and finds one by reference', async () => {
+      it('lists applications for one user newest first and finds one by reference', async () => {
         const owner = user({ email: `owner-${randomUUID()}@example.com` });
         await store.users.create(owner);
 

@@ -43,7 +43,7 @@ export const STATUS_LABELS = {
   printing: { en: 'Your passport is being printed', hi: 'पासपोर्ट छप रहा है' },
   dispatched: { en: 'Sent by post', hi: 'डाक से भेजा गया' },
   delivered: { en: 'Delivered', hi: 'पहुँच गया' },
-  on_hold: { en: 'On hold — we need something from you', hi: 'रोका गया' },
+  on_hold: { en: 'On hold - we need something from you', hi: 'रोका गया' },
   rejected: { en: 'Not approved', hi: 'अस्वीकृत' },
   cancelled: { en: 'Cancelled', hi: 'रद्द' },
 };

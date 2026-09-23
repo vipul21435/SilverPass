@@ -116,7 +116,7 @@ export function NewApplicationPage() {
         >
           {services.map((service) => (
             <option key={service.id} value={service.id}>
-              {language === 'hi' ? service.nameHi : service.name} — {rupees(service.feeInr)}
+              {language === 'hi' ? service.nameHi : service.name} - {rupees(service.feeInr)}
             </option>
           ))}
         </Field>
@@ -131,10 +131,10 @@ export function NewApplicationPage() {
             error={errors.scheme}
           >
             <option value="normal">
-              {t('new.schemeNormal')} — {rupees(selected.feeInr)}
+              {t('new.schemeNormal')} - {rupees(selected.feeInr)}
             </option>
             <option value="tatkal">
-              {t('new.schemeTatkal')} — {rupees(selected.tatkalFeeInr)}
+              {t('new.schemeTatkal')} - {rupees(selected.tatkalFeeInr)}
             </option>
           </Field>
         ) : null}

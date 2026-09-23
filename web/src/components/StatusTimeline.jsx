@@ -34,7 +34,7 @@ export function StatusTimeline({ status, history = [] }) {
             <span className="timeline-title">{entry.status.replaceAll('_', ' ')}</span>
             <span className="timeline-meta">
               {new Date(entry.at).toLocaleDateString()}
-              {entry.note ? ` — ${entry.note}` : ''}
+              {entry.note ? ` - ${entry.note}` : ''}
             </span>
           </li>
         ))}
@@ -52,7 +52,7 @@ export function StatusTimeline({ status, history = [] }) {
             <span className="timeline-title">
               {LABELS[step][language] ?? LABELS[step].en}
               {state === 'current' ? (
-                <span className="visually-hidden"> — {t('app.status')}</span>
+                <span className="visually-hidden"> - {t('app.status')}</span>
               ) : null}
             </span>
             {at ? <span className="timeline-meta">{new Date(at).toLocaleDateString()}</span> : null}

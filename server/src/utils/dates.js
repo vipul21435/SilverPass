@@ -19,7 +19,7 @@ export function ageInYears(dateOfBirth, on = todayIso()) {
   return age;
 }
 
-/** 0 = Sunday … 6 = Saturday. */
+/** 0 = Sunday ... 6 = Saturday. */
 export const dayOfWeek = (isoDateString) => new Date(`${isoDateString}T00:00:00Z`).getUTCDay();
 
 export const daysBetween = (fromIso, toIso) =>

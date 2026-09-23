@@ -101,7 +101,7 @@ if (!parsed.success) {
 const env = parsed.data;
 
 // Outside production a missing secret is tolerable, but it must never be a
-// predictable constant — a random per-boot secret simply invalidates old
+// predictable constant - a random per-boot secret simply invalidates old
 // tokens on restart, which is the safe failure mode.
 const jwtSecret = env.JWT_SECRET ?? (await import('node:crypto')).randomBytes(48).toString('hex');
 

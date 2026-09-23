@@ -3,7 +3,7 @@
 **Passport services that an 80-year-old can actually use.**
 
 SilverPass helps older citizens apply for a passport, gather the right documents,
-book an appointment, and follow what is happening to their application — in large
+book an appointment, and follow what is happening to their application - in large
 type, plain words, and their choice of English or Hindi.
 
 [![CI](https://github.com/vipul21435/SilverPass/actions/workflows/ci.yml/badge.svg)](https://github.com/vipul21435/SilverPass/actions/workflows/ci.yml)
@@ -17,9 +17,9 @@ type, plain words, and their choice of English or Hindi.
 ## Why it exists
 
 Government service portals are usually built for the median user. The people who
-most need help with a passport renewal — a 74-year-old who has never used one, a
+most need help with a passport renewal - a 74-year-old who has never used one, a
 widow sorting out paperwork alone, someone whose reading glasses no longer quite
-do the job — are the ones the default design serves worst.
+do the job - are the ones the default design serves worst.
 
 SilverPass takes the opposite starting point. Every decision below follows from
 "assume the person using this finds small text hard, is not sure what a
@@ -27,7 +27,7 @@ SilverPass takes the opposite starting point. Every decision below follows from
 
 | Decision                                                              | Reason                                                                                |
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| 20px base text, with A / A+ / A++ controls in the top bar             | Not buried in a settings page — it is the first thing on the page                     |
+| 20px base text, with A / A+ / A++ controls in the top bar             | Not buried in a settings page - it is the first thing on the page                     |
 | Accessible defaults switch on automatically for applicants aged 60+   | The people who need large text shouldn't have to find the setting                     |
 | Full English and Hindi, switchable at any moment                      | 135 strings, both complete, enforced by a test                                        |
 | The first two hours of every day are reserved for applicants aged 60+ | Queueing is the barrier; quiet slots are allocated, not raced for                     |
@@ -42,7 +42,7 @@ SilverPass takes the opposite starting point. Every decision below follows from
 
 - Five services (new passport, renewal, lost or damaged, police clearance, minor)
   with per-service document checklists, fees, and processing times
-- A checklist you tick off as you gather papers — progress is saved
+- A checklist you tick off as you gather papers - progress is saved
 - Automatic senior-citizen fee concession, priced from the applicant's date of
   birth rather than the account holder's
 - Appointment booking across five centres, with step-free access and wheelchair
@@ -53,11 +53,11 @@ SilverPass takes the opposite starting point. Every decision below follows from
 
 - JWT authentication, bcrypt password hashing, constant-time login failure
 - Every input validated with Zod; every error returned in one structured shape
-- A status machine that refuses illegal transitions (no jumping `draft` → `delivered`)
+- A status machine that refuses illegal transitions (no jumping `draft` -> `delivered`)
 - Two interchangeable storage backends behind one interface, held to a shared
   contract test
 - Helmet, CORS allow-listing, rate limiting, and a 100 kB body cap
-- 135 tests — the server suite runs against both storage backends
+- 135 tests - the server suite runs against both storage backends
 
 ## Quick start
 
@@ -91,26 +91,26 @@ If you seeded, sign in with any of these and the password `silverpass demo`:
 
 ```
 SilverPass/
-├── server/                 Express API
-│   ├── src/
-│   │   ├── config/         Environment loading and validation
-│   │   ├── db/             Storage: one interface, two adapters
-│   │   ├── middleware/     Auth, validation, rate limits, error handling
-│   │   ├── models/         Zod schemas and the application status machine
-│   │   ├── routes/         HTTP layer — thin, delegates to services
-│   │   ├── services/       Domain logic and reference data
-│   │   └── utils/          Dates, ids, errors, logging
-│   ├── scripts/            seed.js, test-mongo.js
-│   └── test/               82 tests, runnable against either adapter
-├── web/                    React + Vite client
-│   └── src/
-│       ├── components/     Layout, accessibility bar, form fields, timeline
-│       ├── context/        Settings (language, text size, contrast), auth, strings
-│       ├── lib/            API client and formatting
-│       ├── pages/          One file per route
-│       └── test/           34 tests
-├── docs/                   API reference, accessibility notes, rebuild log
-└── .github/workflows/      CI
++-- server/                 Express API
+|   +-- src/
+|   |   +-- config/         Environment loading and validation
+|   |   +-- db/             Storage: one interface, two adapters
+|   |   +-- middleware/     Auth, validation, rate limits, error handling
+|   |   +-- models/         Zod schemas and the application status machine
+|   |   +-- routes/         HTTP layer - thin, delegates to services
+|   |   +-- services/       Domain logic and reference data
+|   |   +-- utils/          Dates, ids, errors, logging
+|   +-- scripts/            seed.js, test-mongo.js
+|   +-- test/               82 tests, runnable against either adapter
++-- web/                    React + Vite client
+|   +-- src/
+|       +-- components/     Layout, accessibility bar, form fields, timeline
+|       +-- context/        Settings (language, text size, contrast), auth, strings
+|       +-- lib/            API client and formatting
+|       +-- pages/          One file per route
+|       +-- test/           34 tests
++-- docs/                   API reference, accessibility notes, rebuild log
++-- .github/workflows/      CI
 ```
 
 ## Commands
@@ -150,14 +150,14 @@ clear message rather than failing later.
 | `CORS_ORIGIN`            | `http://localhost:5173` | Comma-separated allow-list                                                                                                            |
 | `STORE`                  | `json`                  | `json` or `mongo`                                                                                                                     |
 | `JSON_STORE_PATH`        | `data/silverpass.json`  | Relative to `server/`                                                                                                                 |
-| `MONGO_URI`              | —                       | Required when `STORE=mongo`                                                                                                           |
+| `MONGO_URI`              | -                       | Required when `STORE=mongo`                                                                                                           |
 | `MONGO_DB_NAME`          | `silverpass`            |                                                                                                                                       |
-| `SILVERPASS_SKIP_DOTENV` | —                       | Set to `1` to ignore `.env` files and use only the environment                                                                        |
+| `SILVERPASS_SKIP_DOTENV` | -                       | Set to `1` to ignore `.env` files and use only the environment                                                                        |
 
 ### Storage
 
 The JSON store is the default because it makes the repository runnable the
-moment it is cloned — no database, no container, no connection string. It keeps
+moment it is cloned - no database, no container, no connection string. It keeps
 everything in memory and flushes atomically (write to a temp file, then rename),
 with writes serialised through a promise chain so concurrent requests cannot
 interleave.
@@ -172,15 +172,15 @@ Both adapters implement the same interface and are held to the same
 [contract test](server/test/store.test.js), so neither can quietly drift from
 the other. CI runs the entire server suite twice, once per adapter.
 
-The JSON store suits a single process. For more than one, use MongoDB — and note
+The JSON store suits a single process. For more than one, use MongoDB - and note
 that appointment seats are reserved with a count-then-create, which a busy
 multi-node deployment would want to replace with a transactional reservation.
 
 ## Documentation
 
-- [API reference](docs/API.md) — every endpoint, with request and response shapes
-- [Accessibility notes](docs/ACCESSIBILITY.md) — what was done and how to verify it
-- [Rebuild log](docs/REBUILD.md) — what was wrong with the original and what changed
+- [API reference](docs/API.md) - every endpoint, with request and response shapes
+- [Accessibility notes](docs/ACCESSIBILITY.md) - what was done and how to verify it
+- [Rebuild log](docs/REBUILD.md) - what was wrong with the original and what changed
 
 ## Security
 
@@ -191,7 +191,7 @@ every request, so a deleted account stops working immediately rather than when
 its token happens to expire. Unexpected errors are logged in full and returned as
 a generic 500.
 
-Please read [SECURITY.md](SECURITY.md) — it covers reporting, and the credential
+Please read [SECURITY.md](SECURITY.md) - it covers reporting, and the credential
 that was exposed in this repository's history.
 
 ## Licence

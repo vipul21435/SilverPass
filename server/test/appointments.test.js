@@ -227,7 +227,7 @@ describe('appointments', () => {
     }).expect(409);
   });
 
-  it('keeps each centre’s seats separate', async () => {
+  it('keeps the seats at each centre separate', async () => {
     const date = nextOpenDate(8);
     const time = '12:30';
     const app = await createSubmittedApplication(ctx.api, senior);
@@ -249,7 +249,7 @@ describe('appointments', () => {
     }).expect(400);
   });
 
-  it('will not book against another account’s application', async () => {
+  it('will not book against an application owned by another account', async () => {
     const app = await createSubmittedApplication(ctx.api, senior);
     await book(adult, {
       applicationId: app.id,
@@ -259,7 +259,7 @@ describe('appointments', () => {
     }).expect(403);
   });
 
-  it('will not cancel another account’s appointment', async () => {
+  it('will not cancel an appointment owned by another account', async () => {
     const app = await createSubmittedApplication(ctx.api, senior);
     const booked = await book(senior, {
       applicationId: app.id,
@@ -271,7 +271,7 @@ describe('appointments', () => {
     await adult.auth(ctx.api.delete(`/api/appointments/${booked.body.appointment.id}`)).expect(403);
   });
 
-  it('lists the caller’s appointments in date order', async () => {
+  it('lists appointments for the signed-in account in date order', async () => {
     const response = await senior.auth(ctx.api.get('/api/appointments')).expect(200);
     const dates = response.body.appointments.map((a) => `${a.date}${a.startTime}`);
     assert.deepEqual(dates, [...dates].sort());

@@ -33,7 +33,7 @@ const DOC = {
   damagedPassport: {
     id: 'damaged-passport',
     label: 'The damaged passport',
-    hint: 'Bring it even if it is badly damaged — it must be surrendered.',
+    hint: 'Bring it even if it is badly damaged - it must be surrendered.',
   },
   pensionOrder: {
     id: 'pension-order',
@@ -177,7 +177,7 @@ export const CENTERS = [
     id: 'psk-gurugram',
     name: 'PSK Gurugram',
     nameHi: 'पीएसके गुरुग्राम',
-    address: 'Sector 14, Old Delhi–Gurgaon Road, Gurugram 122001',
+    address: 'Sector 14, Old Delhi-Gurgaon Road, Gurugram 122001',
     city: 'Gurugram',
     stepFreeAccess: true,
     wheelchairsAvailable: false,

@@ -39,7 +39,7 @@
   --focus-ring: 4px solid #c8500a;
   --shadow: 0 2px 8px rgb(20 32 46 / 12%);
 
-  --touch-target: 3rem; /* 48px at the default size — WCAG 2.2 target size */
+  --touch-target: 3rem; /* 48px at the default size - WCAG 2.2 target size */
 }
 
 /* Text scaling. Everything downstream is in rem, so one value moves the page. */

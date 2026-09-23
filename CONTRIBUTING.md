@@ -11,7 +11,7 @@ npm run seed --workspace server   # optional demo data
 npm run dev
 ```
 
-Node 20.11 or newer. No database required — the default store is a JSON file.
+Node 20.11 or newer. No database required - the default store is a JSON file.
 
 ## Before you open a pull request
 
@@ -55,7 +55,7 @@ keyboard operability. New form inputs should use the `Field` component, which
 handles the ARIA wiring.
 
 **Comments explain why.** The code already says what it does. Comment the
-reasoning that would otherwise be lost — a constant-time comparison, a
+reasoning that would otherwise be lost - a constant-time comparison, a
 non-obvious spawn choice, a deliberate scope limit.
 
 ## Commits

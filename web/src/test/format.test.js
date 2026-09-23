@@ -10,7 +10,7 @@ describe('clockTime', () => {
     expect(clockTime('16:00')).toBe('4:00 pm');
   });
 
-  it('does not turn noon or midnight into zero o’clock', () => {
+  it('does not turn noon or midnight into zero hours', () => {
     expect(clockTime('12:00')).toBe('12:00 pm');
     expect(clockTime('00:15')).toBe('12:15 am');
   });

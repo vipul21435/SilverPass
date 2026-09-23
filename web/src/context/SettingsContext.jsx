@@ -13,7 +13,7 @@ function readStored() {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     return raw ? { ...DEFAULTS, ...JSON.parse(raw) } : DEFAULTS;
   } catch {
-    // Private browsing, blocked storage, or corrupt JSON — the defaults are
+    // Private browsing, blocked storage, or corrupt JSON - the defaults are
     // perfectly usable, so never let this break the page.
     return DEFAULTS;
   }

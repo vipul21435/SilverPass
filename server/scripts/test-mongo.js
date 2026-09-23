@@ -7,7 +7,7 @@
  *
  * Note: this spawns the test runner asynchronously on purpose. `spawnSync`
  * would block this process's event loop, which in turn stops it draining the
- * temporary mongod's stdout pipe — once that 64 KB buffer fills, mongod blocks
+ * temporary mongod's stdout pipe - once that 64 KB buffer fills, mongod blocks
  * on write and stops answering queries, and the suite dies on socket timeouts.
  */
 import { spawn } from 'node:child_process';

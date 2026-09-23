@@ -95,11 +95,11 @@ export function BookAppointmentPage() {
           <p className="muted">
             {center.address}
             <br />
-            {center.stepFreeAccess ? `✓ ${t('book.stepFree')}` : `• ${t('book.noStepFree')}`}
-            {' · '}
+            {center.stepFreeAccess ? `yes ${t('book.stepFree')}` : `- ${t('book.noStepFree')}`}
+            {' | '}
             {center.wheelchairsAvailable
-              ? `✓ ${t('book.wheelchairs')}`
-              : `• ${t('book.noWheelchairs')}`}
+              ? `yes ${t('book.wheelchairs')}`
+              : `- ${t('book.noWheelchairs')}`}
           </p>
         ) : null}
 

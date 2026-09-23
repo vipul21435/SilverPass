@@ -174,7 +174,7 @@ describe('applications', () => {
       .expect(409);
   });
 
-  it('lists only the caller’s own applications, newest first', async () => {
+  it('lists only applications owned by the caller, newest first', async () => {
     const other = await registerUser(ctx.api);
     await other.auth(ctx.api.post('/api/applications')).send(applicationPayload()).expect(201);
 
@@ -186,7 +186,7 @@ describe('applications', () => {
     assert.equal(theirs.body.applications.length, 1);
   });
 
-  it('will not let one account read or change another account’s application', async () => {
+  it('will not let one account read or change an application owned by another', async () => {
     const other = await registerUser(ctx.api);
     const app = await createSubmittedApplication(ctx.api, user);
 

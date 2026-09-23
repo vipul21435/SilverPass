@@ -9,7 +9,7 @@ records what was built for them and how to check it still works.
 **Base size is 20px (1.25rem), not 16px.** Every length downstream is in `rem`,
 so the whole page scales from one custom property.
 
-**A / A+ / A++ controls sit in a bar above the header** — the first thing after
+**A / A+ / A++ controls sit in a bar above the header** - the first thing after
 the skip link, never behind a menu. They set `data-text-size` on `<html>`;
 `:root` and the two override blocks in
 [`global.css`](../web/src/styles/global.css) redefine the type scale. Largest is
@@ -58,7 +58,7 @@ white. It is never removed.
 ## Language
 
 Full English and Hindi, switchable at any point without losing your place. All
-135 strings exist in both — [`strings.test.js`](../web/src/test/strings.test.js)
+135 strings exist in both - [`strings.test.js`](../web/src/test/strings.test.js)
 fails the build if a key is missing from either, if one defines a key the other
 does not, if a placeholder differs between them, or if any string is empty.
 
@@ -70,13 +70,13 @@ returned in both languages, so the API is not English-only.
 Statuses are written as sentences, never as enum values: "Your passport is being
 printed", not `PRINTING`. Validation messages name the field and say what to do:
 "Please fill in your city or town", not "String must contain at least 1
-character(s)". Scheme names are explained rather than assumed — "Fast-track —
+character(s)". Scheme names are explained rather than assumed - "Fast-track -
 quicker, but costs more" rather than "Tatkal".
 
 ## Beyond the screen
 
 **Senior-priority slots.** The first two hours of every day at every centre
-(09:30–11:00) are bookable only by applicants aged 60 or over. Queueing is the
+(09:30-11:00) are bookable only by applicants aged 60 or over. Queueing is the
 single biggest barrier this application exists to remove, so the quietest slots
 are allocated by need rather than to whoever books fastest.
 
@@ -88,7 +88,7 @@ needs, and the name and number of whoever is coming along, are collected when
 the application is made and attached to the appointment, so the centre knows
 in advance.
 
-**Reference numbers avoid `0`, `O`, `1`, and `I`** — they get read aloud over the
+**Reference numbers avoid `0`, `O`, `1`, and `I`** - they get read aloud over the
 phone, and misread otherwise.
 
 **Tracking needs no account**, because an adult child checking on a parent's
