@@ -12,8 +12,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "test": "node --test --import ./test/setup.js --test-concurrency=1 \"test/**/*.test.js\"",
-    "test:watch": "node --test --import ./test/setup.js --watch \"test/**/*.test.js\"",
+    "test": "node scripts/run-tests.js",
+    "test:watch": "node --test --import ./test/setup.js --watch test/unit.test.js",
     "test:mongo": "node scripts/test-mongo.js",
     "test:all": "npm run test && npm run test:mongo",
     "seed": "node scripts/seed.js"

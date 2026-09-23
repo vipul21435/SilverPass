@@ -24,14 +24,11 @@ if (!uri) {
 
 process.stdout.write(`Running the suite against MongoDB at ${uri.replace(/\/\/[^@]*@/, '//')}\n`);
 
-const child = spawn(
-  process.execPath,
-  ['--test', '--import', './test/setup.js', '--test-concurrency=1', 'test/**/*.test.js'],
-  {
-    stdio: 'inherit',
-    env: { ...process.env, TEST_MONGO_URI: uri, TEST_STORE_DRIVER: 'mongo' },
-  },
-);
+// Reuses the same runner, so both legs run exactly the same files.
+const child = spawn(process.execPath, ['scripts/run-tests.js'], {
+  stdio: 'inherit',
+  env: { ...process.env, TEST_MONGO_URI: uri, TEST_STORE_DRIVER: 'mongo' },
+});
 
 const code = await new Promise((resolve) => {
   child.on('close', resolve);
