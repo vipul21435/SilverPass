@@ -57,7 +57,7 @@ SilverPass takes the opposite starting point. Every decision below follows from
 - Two interchangeable storage backends behind one interface, held to a shared
   contract test
 - Helmet, CORS allow-listing, rate limiting, and a 100 kB body cap
-- 126 tests — the server suite runs against both storage backends
+- 135 tests — the server suite runs against both storage backends
 
 ## Quick start
 

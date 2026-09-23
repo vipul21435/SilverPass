@@ -128,16 +128,17 @@ link and proper landmarks. See [ACCESSIBILITY.md](ACCESSIBILITY.md).
 
 ### Testing
 
-| Suite                              | Count | Covers                                             |
-| ---------------------------------- | ----- | -------------------------------------------------- |
-| `server/test/unit.test.js`         | 21    | Dates, fees, status transitions, booking rules     |
-| `server/test/auth.test.js`         | 14    | Registration, login, sessions, profile             |
-| `server/test/applications.test.js` | 19    | Lifecycle, checklist, pricing, ownership           |
-| `server/test/appointments.test.js` | 19    | Slots, senior priority, capacity, cancellation     |
-| `server/test/store.test.js`        | 10 ×2 | The adapter contract, run against both             |
-| `web/src/test/`                    | 43    | Accessibility controls, forms, flows, translations |
+| Suite                              | Count | Covers                                                  |
+| ---------------------------------- | ----- | ------------------------------------------------------- |
+| `server/test/unit.test.js`         | 21    | Dates, fees, status transitions, booking rules          |
+| `server/test/config.test.js`       | 9     | Environment precedence, empty values, refusals to start |
+| `server/test/auth.test.js`         | 14    | Registration, login, sessions, profile                  |
+| `server/test/applications.test.js` | 19    | Lifecycle, checklist, pricing, ownership                |
+| `server/test/appointments.test.js` | 19    | Slots, senior priority, capacity, cancellation          |
+| `server/test/store.test.js`        | 10 ×2 | The adapter contract, run against both                  |
+| `web/src/test/`                    | 43    | Accessibility controls, forms, flows, translations      |
 
-126 tests. The server suite runs twice in CI, once per storage adapter.
+135 tests. The server suite runs twice in CI, once per storage adapter.
 
 Two of these were worth the trouble on their own:
 
@@ -161,6 +162,6 @@ that seeds a database, boots the server, signs in, and reads an application back
 |               | Before            | After  |
 | ------------- | ----------------- | ------ |
 | Source files  | 1                 | 49     |
-| Tests         | 0                 | 126    |
+| Tests         | 0                 | 135    |
 | Documentation | 1 (wrong project) | 6      |
 | CI            | none              | 4 jobs |
